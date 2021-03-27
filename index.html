@@ -15,19 +15,59 @@
       height="400"
       src="http://nostarch.com/images/treasuremap.png"
     />
-    <p id="distance"></p>
+    <h2 id="distance"></h2>
 
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
+      const getDistance = (event, target) => {
+        const diffX = event.offsetX - target.x;
+        const diffY = event.offsetY - target.y;
+
+        return Math.sqrt(diffX * diffY + diffY * diffY);
+      };
+
       const getRandomNumber = (size) => Math.floor(Math.random() * size);
+
       const width = 400;
       const height = 400;
 
+      let clicks = 0;
+
+      const getDistanceHint = function (distance) {
+        if (distance < 10) {
+          return "Boiling hot!";
+        } else if (distance < 20) {
+          return "Really hot";
+        } else if (distance < 40) {
+          return "Hot";
+        } else if (distance < 80) {
+          return "Warm";
+        } else if (distance < 160) {
+          return "Cold";
+        } else if (distance < 320) {
+          return "Really cold";
+        } else {
+          return "Freezing!";
+        }
+      };
+
       const target = {
-          x: getRandomNumber(width),
-          y: getRandomNumber(height)
-      }
-      
+        x: getRandomNumber(width),
+        y: getRandomNumber(height),
+      };
+
+      $("#map").click(function (event) {
+        ++clicks;
+
+        const distance = getDistance(event, target);
+
+        const distanceHint = getDistanceHint(distance);
+        $("#distance").text(distanceHint);
+
+        if (distance < 8) {
+          alert(`Found the treasure in ${clicks} clicks!`);
+        }
+      });
     </script>
   </body>
 </html>
