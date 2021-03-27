@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/cali.png" />
+    <title>Burried Treasure</title>
+  </head>
+  <body>
+    <h1 id="heading">Find the buried treasure!</h1>
+    <img
+      id="map"
+      width="400"
+      height="400"
+      src="http://nostarch.com/images/treasuremap.png"
+    />
+    <p id="distance"></p>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+      const getRandomNumber = (size) => Math.floor(Math.random() * size);
+      const width = 400;
+      const height = 400;
+
+      const target = {
+          x: getRandomNumber(width),
+          y: getRandomNumber(height)
+      }
+      
+    </script>
+  </body>
+</html>
